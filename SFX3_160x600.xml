@@ -1,0 +1,168 @@
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Firefox 3" width="160" height="600" thumbnail="http://www.jeremyglassenberg.com/sfx_thumbnail.png" scrolling="false" author="Mozilla" author_email="drolnitzky@mozilla.com" description="Firefox 3 Banner">
+    
+    
+  </ModulePrefs>
+ 
+  <Content type="html"><![CDATA[
+    
+<style type="text/css">
+  img {
+
+    border: none;
+  }
+
+</style>    
+    
+<script>
+  
+  function Display(c){var t=document.getElementsByTagName('a');for(var i=0;i<t.length;i++) if(c==t[i].className) t[i].style.display='inline';}
+</script>    
+<a id="NonFirefoxContent" class="NonFirefoxContent" href="http://www.mozilla.com/en-US/firefox/?utm_source=google&utm_medium=gadget&utm_content=160x600&utm_campaign=160x600new" style="display:none;" title="Get Firefox!"><img src="http://www.mozilla.com/img/firefox/googleimgads/firefox3/160x600_New.png" /></a>
+ 
+  <a id="Firefox2Content" class="Firefox2Content" href="http://www.mozilla.com/en-US/firefox/?utm_source=google&utm_medium=gadget&utm_content=160x600&utm_campaign=160x600upgrade" style="display:none;" title="Get Firefox!"><img src="http://www.mozilla.com/img/firefox/googleimgads/firefox3/160x600_Upgrade.png" /></a>
+
+  <a id="Firefox3Content" class="Firefox3Content" href="https://addons.mozilla.org/en-US/firefox/?utm_source=google&utm_medium=gadget&utm_content=160x600&utm_campaign=160x600addons" style="display:none;" title="Get Firefox!"><img src="http://www.mozilla.com/img/firefox/googleimgads/firefox3/160x600_AddOns.png" /></a>
+ 
+  
+<script type="text/javascript">
+  _IG_RegisterOnloadHandler(function() {
+    // Start writing JavaScript here
+    if (BrowserDetect.browser == "Firefox"){
+    
+      if (BrowserDetect.version == "3"){
+        Display('Firefox3Content');
+      }
+      else {
+        Display('Firefox2Content');
+      }
+    }
+    else {
+        Display('NonFirefoxContent');
+  
+        
+    }
+  });
+  
+    </script>
+  
+  <script>
+    /* *********************************************
+This code came from http://www.quirksmode.org/js/detect.html 
+In order for this to function properly, it must be updated regularly
+***********************************************/
+
+var BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString(this.dataOS) || "an unknown OS";
+	},
+	searchString: function (data) {
+		for (var i=0;i<data.length;i++)	{
+			var dataString = data[i].string;
+			var dataProp = data[i].prop;
+			this.versionSearchString = data[i].versionSearch || data[i].identity;
+			if (dataString) {
+				if (dataString.indexOf(data[i].subString) != -1)
+					return data[i].identity;
+			}
+			else if (dataProp)
+				return data[i].identity;
+		}
+	},
+	searchVersion: function (dataString) {
+		var index = dataString.indexOf(this.versionSearchString);
+		if (index == -1) return;
+		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+	},
+	dataBrowser: [
+		{ 	string: navigator.userAgent,
+			subString: "OmniWeb",
+			versionSearch: "OmniWeb/",
+			identity: "OmniWeb"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Apple",
+			identity: "Safari"
+		},
+		{
+			prop: window.opera,
+			identity: "Opera"
+		},
+		{
+			string: navigator.vendor,
+			subString: "iCab",
+			identity: "iCab"
+		},
+		{
+			string: navigator.vendor,
+			subString: "KDE",
+			identity: "Konqueror"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Firefox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Camino",
+			identity: "Camino"
+		},
+		{		// for newer Netscapes (6+)
+			string: navigator.userAgent,
+			subString: "Netscape",
+			identity: "Netscape"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "MSIE",
+			identity: "Explorer",
+			versionSearch: "MSIE"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Gecko",
+			identity: "Mozilla",
+			versionSearch: "rv"
+		},
+		{ 		// for older Netscapes (4-)
+			string: navigator.userAgent,
+			subString: "Mozilla",
+			identity: "Netscape",
+			versionSearch: "Mozilla"
+		}
+	],
+	dataOS : [
+		{
+			string: navigator.platform,
+			subString: "Win",
+			identity: "Windows"
+		},
+		{
+			string: navigator.platform,
+			subString: "Mac",
+			identity: "Mac"
+		},
+		{
+			string: navigator.platform,
+			subString: "Linux",
+			identity: "Linux"
+		}
+	]
+
+};
+BrowserDetect.init();
+
+    
+    </script>
+
+  ]]></Content>
+</Module>
+
